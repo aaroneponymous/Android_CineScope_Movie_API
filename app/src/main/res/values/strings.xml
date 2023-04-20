@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Cine Scope</string>
+    <string name="title_my_movies">My Movies</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_webview">Webview</string>
+    <string name="title_info">Information</string>
+    <string name="no_connection">No Network Connection!</string>
+    <string name="field_lookup_movie">Look Up Movie ...</string>
+    <string name="no_movies_found">No Movies Found!
+                                   Try Searching Again!</string>
+
+</resources>
