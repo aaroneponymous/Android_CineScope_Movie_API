@@ -17,12 +17,12 @@ private const val TAG = "DashboardViewModel"
 class DashboardViewModel : ViewModel() {
 
     companion object {
-        private val tmdpAPI: TmdpAPI by lazy {
+        private val tmdbAPI: TmdbAPI by lazy {
             val retrofit = Retrofit.Builder()
                 .baseUrl(DEFAULT_TMDB_SEARCH_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-            return@lazy retrofit.create(TmdpAPI::class.java)
+            return@lazy retrofit.create(TmdbAPI::class.java)
         }
     }
 
@@ -31,13 +31,13 @@ class DashboardViewModel : ViewModel() {
 
     fun searchMovies(query: String) {
         _movies.value = emptyList() // clear existing results
-        val movieRequest: Call<TmdpResponse> = tmdpAPI.searchMovies(BuildConfig.apikey, query)
-        movieRequest.enqueue(object : Callback<TmdpResponse> {
-            override fun onFailure(call: Call<TmdpResponse>, t: Throwable) {
+        val movieRequest: Call<TmdbResponse> = tmdbAPI.searchMovies(BuildConfig.apikey, query)
+        movieRequest.enqueue(object : Callback<TmdbResponse> {
+            override fun onFailure(call: Call<TmdbResponse>, t: Throwable) {
                 Log.d(TAG, "Failed to get response.")
             }
 
-            override fun onResponse(call: Call<TmdpResponse>, response: Response<TmdpResponse>) {
+            override fun onResponse(call: Call<TmdbResponse>, response: Response<TmdbResponse>) {
                 _movies.value = response.body()?.results
             }
         })

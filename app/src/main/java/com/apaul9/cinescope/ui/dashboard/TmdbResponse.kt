@@ -1,6 +1,6 @@
 package com.apaul9.cinescope.ui.dashboard
 
-data class TmdpResponse(
+data class TmdbResponse(
     val page: Int,
     val results: List<Movie>
 )
@@ -14,7 +14,7 @@ data class Movie(
     val original_title: String,
     val overview: String,
     val popularity: Double,
-    val poster_path: String?,
+    var poster_path: String?,
     val release_date: String?,
     val title: String,
     val video: Boolean,
