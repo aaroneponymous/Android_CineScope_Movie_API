@@ -1,8 +1,7 @@
 package com.apaul9.cinescope.ui.webview
 
 data class TmdbWebResponse(
-    val page: Int,
-    val results: List<Movie>
+    val result: Movie
 )
 
 data class Movie(

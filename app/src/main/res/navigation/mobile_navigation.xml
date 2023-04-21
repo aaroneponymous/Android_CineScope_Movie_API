@@ -20,6 +20,9 @@
         android:id="@+id/navigation_webview"
         android:name="com.apaul9.cinescope.ui.webview.WebviewFragment"
         android:label="@string/title_webview"
-        tools:layout="@layout/fragment_webview" />
+        tools:layout="@layout/fragment_webview" >
+        <argument
+            android:name="movieID" />
+    </fragment>
 
 </navigation>

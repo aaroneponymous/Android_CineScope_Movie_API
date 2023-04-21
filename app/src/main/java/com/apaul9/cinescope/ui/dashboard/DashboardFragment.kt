@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,38 +45,19 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         binding.apply {
             viewModel.movies.observe(viewLifecycleOwner) { movies ->
                 if (movies.isNotEmpty()) {
-                    movies.forEach {
-                        if (it.poster_path != null) {
-                            val posterPath = it.poster_path
-                            val posterUrl = CineScopeApp.DEFAULT_TMDB_IMAGE_URL + posterPath
-                            it.poster_path = posterUrl
-                            Log.d(TAG, "Poster URL: $posterUrl")
-                        }
-
-                        Log.d(TAG, "Movie: $it")
-                    }
-
                     recyclerView.run {
                         layoutManager = LinearLayoutManager(context)
                         adapter = movieAdapter
                     }
                 }
             }
-
             searchButton.setOnClickListener {
                 val query = searchMovies.text.toString()
                 if (query.isNotEmpty()) {
-                    Log.d(TAG, "Movie To Search: $query")
-                    viewModel.searchMovies(query)
-                }
-
-                viewModel.movies.observe(viewLifecycleOwner) { movies ->
-                    if (movies.isEmpty()) {
-                        Toast.makeText(context, "No movies found", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                    viewModel.searchComplete(query, "en-US")
                 }
             }
+        }
         return binding.root
     }
 
@@ -87,7 +69,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         }
 
         val itemTouchHelperCallback =
-            object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            object :
+                ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
                 override fun onMove(
                     recyclerView: RecyclerView,
                     viewHolder: RecyclerView.ViewHolder,
@@ -98,7 +81,9 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                     if (direction == ItemTouchHelper.LEFT) {
 
                     } else if (direction == ItemTouchHelper.RIGHT) {
-
+                        val movieId = movieAdapter.movie[viewHolder.adapterPosition].id
+                        val action = DashboardFragmentDirections.actionNavigationDashboardToWebviewFragment(movieId.toString())
+                        binding.root.findNavController().navigate(action)
                     }
                 }
             }
@@ -127,7 +112,9 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             movieOverview.text = movie.overview
 
             if (movie.poster_path != null) {
-                Picasso.get().load(movie.poster_path).into(moviePoster)
+//                Log.d(TAG, "Movie Poster: ${movie.poster_path}")
+                var posterLink = CineScopeApp.DEFAULT_TMDB_IMAGE_URL + movie.poster_path
+                Picasso.get().load(posterLink).into(moviePoster)
             }
         }
     }
@@ -154,11 +141,6 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         fun getMovieAtPosition(position: Int): Movie {
             return movie[position]
         }
-    }
-
-
-    companion object {
-        fun newInstance() = DashboardFragment()
     }
 
 }

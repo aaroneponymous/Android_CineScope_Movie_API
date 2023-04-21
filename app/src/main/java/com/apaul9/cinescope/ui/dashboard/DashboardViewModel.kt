@@ -29,16 +29,44 @@ class DashboardViewModel : ViewModel() {
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> = _movies
 
-    fun searchMovies(query: String) {
-        _movies.value = emptyList() // clear existing results
-        val movieRequest: Call<TmdbResponse> = tmdbAPI.searchMovies(BuildConfig.apikey, query)
+    fun searchComplete(query: String, language: String) {
+        _movies.value = emptyList()
+        // Initial Search Call To Determine Total Pages
+        val movieRequest: Call<TmdbResponse> = tmdbAPI.searchMovies(BuildConfig.apikey,language, query)
         movieRequest.enqueue(object : Callback<TmdbResponse> {
             override fun onFailure(call: Call<TmdbResponse>, t: Throwable) {
                 Log.d(TAG, "Failed to get response.")
             }
 
             override fun onResponse(call: Call<TmdbResponse>, response: Response<TmdbResponse>) {
-                _movies.value = response.body()?.results
+                val totalResults = response.body()?.total_results
+                val totalPages = response.body()?.total_pages
+
+                if (totalResults!!>=1) {
+                    for (i in 1..totalPages!!) {
+                        searchMovies(query, language, i)
+                    }
+
+                }
+            }
+        })
+    }
+
+    fun searchMovies(query: String, language: String, page: Int) {
+        val movieRequest: Call<TmdbResponse> = tmdbAPI.searchMovies(BuildConfig.apikey, query, language, page)
+        movieRequest.enqueue(object : Callback<TmdbResponse> {
+
+            override fun onFailure(call: Call<TmdbResponse>, t: Throwable) {
+                Log.d(TAG, "Failed to get response.")
+            }
+
+            override fun onResponse(call: Call<TmdbResponse>, response: Response<TmdbResponse>) {
+                val newList: MutableList<Movie> = mutableListOf()
+                response.body()?.results?.forEach {
+                    newList.add(it)
+                }
+                // Append new list to existing list
+                _movies.value = _movies.value?.plus(newList)
             }
         })
     }
