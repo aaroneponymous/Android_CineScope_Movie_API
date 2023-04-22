@@ -22,11 +22,10 @@ class WebviewViewModel : ViewModel() {
         }
     }
 
-    private val _movie = MutableLiveData<Movie?>()
-    val movie: LiveData<Movie?> = _movie
+    private val _movie = MutableLiveData<TmdbWebResponse>()
+    val movie: LiveData<TmdbWebResponse> = _movie
 
     fun fetchMovie(query: String) {
-        _movie.value = null // clear existing results
         val movieRequest: retrofit2.Call<TmdbWebResponse> =
             tmdbWebViewAPI.fetchMovie(query, BuildConfig.apikey)
         Log.d(TAG, "Executed? HELLO")
@@ -42,9 +41,7 @@ class WebviewViewModel : ViewModel() {
                 call: retrofit2.Call<TmdbWebResponse>,
                 response: retrofit2.Response<TmdbWebResponse>
             ) {
-                _movie.value = response.body()?.result
-                Log.d(TAG, "Executed? HELLO")
-                Log.d(TAG, "Movie:  ")
+                _movie.value = response.body()
                 println(movie.value);
             }
         })

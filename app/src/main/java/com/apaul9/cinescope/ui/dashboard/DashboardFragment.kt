@@ -54,7 +54,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             searchButton.setOnClickListener {
                 val query = searchMovies.text.toString()
                 if (query.isNotEmpty()) {
-                    viewModel.searchComplete(query, "en-US")
+                    viewModel.searchComplete(query, "es-ES")
                 }
             }
         }
@@ -103,6 +103,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         private val moviePoster = view.findViewById<ImageView>(R.id.moviePoster)
         private val movieOverview = view.findViewById<TextView>(R.id.overviewMovie)
         private val dateReleased = view.findViewById<TextView>(R.id.dateReleased)
+        private val votingAverage = view.findViewById<TextView>(R.id.vote)
+        private val languageOriginal = view.findViewById<TextView>(R.id.language)
 
 
         fun bind(movie: Movie) {
@@ -110,6 +112,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             movieTitle.text = movie.title
             dateReleased.text = movie.release_date
             movieOverview.text = movie.overview
+            votingAverage.text = movie.vote_average.toString() + "/10"
+            languageOriginal.text = movie.original_language
 
             if (movie.poster_path != null) {
 //                Log.d(TAG, "Movie Poster: ${movie.poster_path}")

@@ -1,6 +1,8 @@
 package com.apaul9.cinescope.ui.dashboard
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val TAG = "DashboardViewModel"
 
-class DashboardViewModel : ViewModel() {
+class DashboardViewModel(app: Application) : AndroidViewModel(app) {
 
     companion object {
         private val tmdbAPI: TmdbAPI by lazy {

@@ -8,5 +8,6 @@
     <string name="field_lookup_movie">Look Up Movie ...</string>
     <string name="no_movies_found">No Movies Found!
                                    Try Searching Again!</string>
+    <string name="language">Language:</string>
 
 </resources>
