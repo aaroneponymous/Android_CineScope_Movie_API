@@ -16,14 +16,17 @@ data class Movie (
     var movieTitle: String = "",
 
     @ColumnInfo(name = "date_released")
-    var releaseDate: String = "",
+    var releaseDate: String? = "",
 
     @ColumnInfo(name = "movie_overview")
-    var movieOverview: String = "",
+    var movieOverview: String? = "",
 
     @ColumnInfo(name = "movie_poster")
-    var moviePoster: String = "",
+    var moviePoster: String? = "",
 
     @ColumnInfo(name = "movie_rating")
-    var movieRating: String = ""
+    var movieRating: String = "",
+
+    @ColumnInfo(name = "movie_language")
+    var movieLanguage: String = ""
 )

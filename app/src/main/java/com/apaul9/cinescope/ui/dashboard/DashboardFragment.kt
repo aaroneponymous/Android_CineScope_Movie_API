@@ -79,8 +79,17 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     if (direction == ItemTouchHelper.LEFT) {
+                        // Send the index location of the item swiped to the left
+                        val indexID = movieAdapter.movie[viewHolder.adapterPosition]
+                        // Navigate to the MyMoviesFragment and pass all the arguments
+                        val action = DashboardFragmentDirections.actionNavigationDashboardToMyMoviesFragment(indexID.id.toString(),
+                            indexID.title, indexID.release_date.toString(), indexID.overview, indexID.vote_average.toString(),
+                            indexID.original_language, indexID.poster_path.toString())
+                        binding.root.findNavController().navigate(action)
 
                     } else if (direction == ItemTouchHelper.RIGHT) {
+//                        viewHolder.itemView.rootView.setBackgroundColor(resources.getColor(R.color.teal_200))
+
                         val movieId = movieAdapter.movie[viewHolder.adapterPosition].id
                         val action = DashboardFragmentDirections.actionNavigationDashboardToWebviewFragment(movieId.toString())
                         binding.root.findNavController().navigate(action)
@@ -105,7 +114,6 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         private val dateReleased = view.findViewById<TextView>(R.id.dateReleased)
         private val votingAverage = view.findViewById<TextView>(R.id.vote)
         private val languageOriginal = view.findViewById<TextView>(R.id.language)
-
 
         fun bind(movie: Movie) {
             this.movie = movie

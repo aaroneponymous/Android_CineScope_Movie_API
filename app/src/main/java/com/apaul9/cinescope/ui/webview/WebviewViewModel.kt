@@ -28,12 +28,9 @@ class WebviewViewModel : ViewModel() {
     fun fetchMovie(query: String) {
         val movieRequest: retrofit2.Call<TmdbWebResponse> =
             tmdbWebViewAPI.fetchMovie(query, BuildConfig.apikey)
-        Log.d(TAG, "Executed? HELLO")
-
         movieRequest.enqueue(object : retrofit2.Callback<TmdbWebResponse> {
 
             override fun onFailure(call: retrofit2.Call<TmdbWebResponse>, t: Throwable) {
-                Log.d(TAG, "Failed to get response.")
                 Log.d(TAG, "Failed to get response.")
             }
 
@@ -42,7 +39,7 @@ class WebviewViewModel : ViewModel() {
                 response: retrofit2.Response<TmdbWebResponse>
             ) {
                 _movie.value = response.body()
-                println(movie.value);
+                Log.d(TAG, "Response: ${response.body()}")
             }
         })
     }

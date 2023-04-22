@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_navigation_dashboard_to_webviewFragment"
             app:destination="@id/navigation_webview" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_myMoviesFragment"
+            app:destination="@id/myMoviesFragment" />
     </fragment>
 
     <fragment
@@ -22,10 +25,42 @@
         android:label="@string/title_webview"
         tools:layout="@layout/fragment_webview" >
         <argument
-            android:name="movieID" />
+            android:name="movieID"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="-1" />
         <action
             android:id="@+id/action_navigation_webview_to_navigation_dashboard"
             app:destination="@id/navigation_dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/myMoviesFragment"
+        android:name="com.apaul9.cinescope.ui.mymovies.MyMoviesFragment"
+        android:label="@string/title_myMovies"
+        tools:layout="@layout/fragment_my_movies" >
+        <argument android:name="movieID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_myMoviesFragment_to_navigation_webview"
+            app:destination="@id/navigation_webview" />
+        <argument
+            android:name="movieTitle"
+            app:argType="string" />
+        <argument
+            android:name="movieReleaseDate"
+            app:argType="string" />
+        <argument
+            android:name="movieOverView"
+            app:argType="string" />
+        <argument
+            android:name="movieVoteAverage"
+            app:argType="string" />
+        <argument
+            android:name="movieLanguage"
+            app:argType="string" />
+        <argument
+            android:name="moviePoster"
+            app:argType="string" />
     </fragment>
 
 </navigation>

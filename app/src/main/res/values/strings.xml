@@ -9,5 +9,9 @@
     <string name="no_movies_found">No Movies Found!
                                    Try Searching Again!</string>
     <string name="language">Language:</string>
+    <string name="title_myMovies">My Movies</string>
+    <string name="delete_Alert">Do you want to delete</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

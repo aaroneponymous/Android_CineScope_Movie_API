@@ -8,4 +8,5 @@
     <string name="no_connection">No Network Connection!</string>
     <string name="field_lookup_movie">Look Up Movie ...</string>
     <string name="language">Language:</string>
+    <string name="title_myMovies">My Movies</string>
 </resources>
