@@ -48,7 +48,6 @@ class DashboardViewModel(app: Application) : AndroidViewModel(app) {
                     for (i in 1..totalPages!!) {
                         searchMovies(query, language, i)
                     }
-
                 }
             }
         })
@@ -65,6 +64,7 @@ class DashboardViewModel(app: Application) : AndroidViewModel(app) {
             override fun onResponse(call: Call<TmdbResponse>, response: Response<TmdbResponse>) {
                 val newList: MutableList<Movie> = mutableListOf()
                 response.body()?.results?.forEach {
+                    Log.d(TAG, "MOVIE: $it")
                     newList.add(it)
                 }
                 // Append new list to existing list

@@ -10,8 +10,9 @@
                                    Try Searching Again!</string>
     <string name="language">Language:</string>
     <string name="title_myMovies">My Movies</string>
-    <string name="delete_Alert">Do you want to delete</string>
+    <string name="delete_Alert">Do you want to delete </string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
+    <string name="movie_search">Movie Search</string>
 
 </resources>

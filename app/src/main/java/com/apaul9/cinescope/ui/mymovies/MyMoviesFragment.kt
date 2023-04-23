@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.apaul9.cinescope.CineScopeApp
 import com.apaul9.cinescope.R
+import com.apaul9.cinescope.database.Movie
 import com.apaul9.cinescope.databinding.FragmentMyMoviesBinding
 import com.apaul9.cinescope.ui.dashboard.DashboardViewModel
 import com.squareup.picasso.Picasso
@@ -42,18 +43,17 @@ class MyMoviesFragment : Fragment(R.layout.fragment_my_movies) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MyMoviesViewModel::class.java)
         if (args.movieID != null) {
-            newMovie.id = args.movieID.toLong()
-            newMovie.movieTitle = args.movieTitle
+            newMovie.id = args.movieID!!.toLong()
+            newMovie.movieTitle = args.movieTitle!!
             newMovie.moviePoster = args.moviePoster
             newMovie.movieOverview = args.movieOverView
             newMovie.releaseDate = args.movieReleaseDate
-            newMovie.movieLanguage = args.movieLanguage
-            newMovie.movieRating = args.movieVoteAverage
+            newMovie.movieLanguage = args.movieLanguage!!
+            newMovie.movieRating = args.movieVoteAverage!!
             viewModel.insertMovie(newMovie)
         }
+
     }
-
-
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -63,8 +63,6 @@ class MyMoviesFragment : Fragment(R.layout.fragment_my_movies) {
     ): View {
         _binding = FragmentMyMoviesBinding.inflate(inflater, container, false)
 
-
-
         binding.apply {
             viewModel.movies.observe(viewLifecycleOwner) { movies ->
                 if (movies.isNotEmpty()) {
@@ -72,6 +70,7 @@ class MyMoviesFragment : Fragment(R.layout.fragment_my_movies) {
                         layoutManager = LinearLayoutManager(context)
                         adapter = movieAdapter
                     }
+
                 }
             }
         }
@@ -87,27 +86,31 @@ class MyMoviesFragment : Fragment(R.layout.fragment_my_movies) {
         }
 
 
-        /*binding.recyclerMyMovies.apply {
+        binding.recyclerMyMovies.apply {
             adapter = movieAdapter
+            var timer: CountDownTimer? = null
             setOnTouchListener { _, event ->
-                if (event.action == MotionEvent.ACTION_DOWN) {
-                    val timer = object : CountDownTimer(5000, 1000) {
-                        override fun onTick(millisUntilFinished: Long) {}
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        timer = object : CountDownTimer(1000, 1000) {
+                            override fun onTick(millisUntilFinished: Long) {}
 
-                        override fun onFinish() {
-                            // handle long tap completed here
-                            val thisMovie =
-                                movieAdapter.getMovieAtPosition((layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition())
-                            itemLongTapped(thisMovie)
+                            override fun onFinish() {
+                                itemLongTapped(newMovie)
+                            }
                         }
+                        timer?.start()
+                        true
                     }
-                    timer.start()
-                    true
-                } else {
-                    false
+                    MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                        timer?.cancel()
+                        false
+                    }
+                    else -> false
                 }
             }
-        }*/
+        }
+
         val itemTouchHelperCallback =
             object :
                 ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
@@ -122,8 +125,6 @@ class MyMoviesFragment : Fragment(R.layout.fragment_my_movies) {
                         val thisMovie = movieAdapter.getMovieAtPosition(viewHolder.adapterPosition)
                         itemDeletedAlert(movie = thisMovie)
 
-
-
                     } else if (direction == ItemTouchHelper.RIGHT) {
                         val movieID = movieAdapter.getMovieAtPosition(viewHolder.adapterPosition).id.toString()
                         val action = MyMoviesFragmentDirections.actionMyMoviesFragmentToNavigationWebview(movieID)
@@ -137,7 +138,7 @@ class MyMoviesFragment : Fragment(R.layout.fragment_my_movies) {
 
     fun itemDeletedAlert(movie: com.apaul9.cinescope.database.Movie) {
 
-        val msg = resources.getString(R.string.delete_Alert) + movie.movieTitle + "?"
+        val msg = resources.getString(R.string.delete_Alert) + " " + movie.movieTitle + "?"
         val builder = AlertDialog.Builder(context)
         with(builder) {
             setMessage(msg)

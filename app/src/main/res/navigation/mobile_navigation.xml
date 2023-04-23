@@ -9,14 +9,14 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.apaul9.cinescope.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
+        android:label="@string/movie_search"
+        tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_navigation_dashboard_to_webviewFragment"
             app:destination="@id/navigation_webview" />
         <action
             android:id="@+id/action_navigation_dashboard_to_myMoviesFragment"
-            app:destination="@id/myMoviesFragment" />
+            app:destination="@id/navigation_mymovies" />
     </fragment>
 
     <fragment
@@ -28,39 +28,56 @@
             android:name="movieID"
             app:argType="string"
             app:nullable="true"
-            android:defaultValue="-1" />
+            android:defaultValue="@null" />
         <action
             android:id="@+id/action_navigation_webview_to_navigation_dashboard"
             app:destination="@id/navigation_dashboard" />
+        <action
+            android:id="@+id/action_navigation_webview_to_navigation_mymovies"
+            app:destination="@id/navigation_mymovies" />
     </fragment>
     <fragment
-        android:id="@+id/myMoviesFragment"
+        android:id="@+id/navigation_mymovies"
         android:name="com.apaul9.cinescope.ui.mymovies.MyMoviesFragment"
         android:label="@string/title_myMovies"
         tools:layout="@layout/fragment_my_movies" >
         <argument android:name="movieID"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <action
             android:id="@+id/action_myMoviesFragment_to_navigation_webview"
             app:destination="@id/navigation_webview" />
         <argument
             android:name="movieTitle"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <argument
             android:name="movieReleaseDate"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <argument
             android:name="movieOverView"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <argument
             android:name="movieVoteAverage"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <argument
             android:name="movieLanguage"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <argument
             android:name="moviePoster"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 
 </navigation>

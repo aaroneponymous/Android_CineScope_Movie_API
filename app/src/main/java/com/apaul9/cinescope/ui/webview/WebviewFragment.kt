@@ -18,7 +18,6 @@ private const val TAG = "WebViewFragment"
 
 class WebviewFragment : Fragment(R.layout.fragment_webview) {
 
-
     val args: WebviewFragmentArgs by navArgs()
     private var _binding: FragmentWebviewBinding? = null
     private val binding get() = _binding!!
@@ -27,34 +26,31 @@ class WebviewFragment : Fragment(R.layout.fragment_webview) {
         ViewModelProvider(this).get(WebviewViewModel::class.java)
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentWebviewBinding.inflate(inflater, container, false)
 
-        val movieID = args.movieID
-        if (!(movieID.equals("-1"))) {
-            movieID?.let { viewModel.fetchMovie(it) }
-            Log.d(TAG, "movieID: $movieID")
-        }
+        Log.d(TAG, "ON CREATE VIEW")
+        viewModel.movie.value?.let { Log.d(TAG, "Original : ${it.original_title}") }
 
+        viewModel.getMovie(args.movieID)
         binding.apply {
             viewModel.movie.observe(viewLifecycleOwner) {
                 webView.webViewClient = WebViewClient()
                 if (it != null) {
                     if (it.homepage != null && it.homepage != "") {
                         webView.loadUrl(it.homepage)
-                        Log.d(TAG, "Homepage: ${it.homepage}")
+                        Log.d(TAG, "OnCreateView: Homepage: ${it.homepage}")
                     }
                     else if (it.imdb_id != null && it.imdb_id != "") {
-                        Log.d(TAG, "IMDB ID: ${it.imdb_id}")
+                        Log.d(TAG, "OnCreateView: IMDB ID: ${it.imdb_id}")
                         webView.loadUrl(DEFAULT_IMDB_URL + it.imdb_id)
                     }
                     else {
                         webView.loadUrl(DEFAULT_GOOGLE_SEARCH_URL + it.original_title)
-                        Log.d(TAG, "Google Search: ${DEFAULT_GOOGLE_SEARCH_URL + it.original_title}")
+                        Log.d(TAG, "OnCreateView: Google Search: ${DEFAULT_GOOGLE_SEARCH_URL + it.original_title}")
                     }
                 }
             }
@@ -63,29 +59,10 @@ class WebviewFragment : Fragment(R.layout.fragment_webview) {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val webView = binding.webView
 
-        viewModel.movie.observe(viewLifecycleOwner) {
-            webView.webViewClient = WebViewClient()
-            if (it != null) {
-                if (it.homepage != null && it.homepage != "") {
-                    webView.loadUrl(it.homepage)
-                    Log.d(TAG, "Homepage: ${it.homepage}")
-                }
-                else if (it.imdb_id != null && it.imdb_id != "") {
-                    Log.d(TAG, "IMDB ID: ${it.imdb_id}")
-                    webView.loadUrl(DEFAULT_IMDB_URL + it.imdb_id)
-                }
-                else {
-                    webView.loadUrl(DEFAULT_GOOGLE_SEARCH_URL + it.original_title)
-                    Log.d(TAG, "Google Search: ${DEFAULT_GOOGLE_SEARCH_URL + it.original_title}")
-                }
-            }
-        }
-
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
