@@ -14,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -22,9 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.apaul9.cinescope.CineScopeApp
 import com.apaul9.cinescope.R
-import com.apaul9.cinescope.database.Movie
 import com.apaul9.cinescope.databinding.FragmentMyMoviesBinding
-import com.apaul9.cinescope.ui.dashboard.DashboardViewModel
 import com.squareup.picasso.Picasso
 
 const val TAG = "MyMoviesFragment"

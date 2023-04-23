@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.apaul9.cinescope.ui.dashboard.DashboardFragment"
-        android:label="@string/movie_search"
+        android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_navigation_dashboard_to_webviewFragment"
@@ -78,6 +78,9 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_navigation_mymovies_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
     </fragment>
 
 </navigation>
