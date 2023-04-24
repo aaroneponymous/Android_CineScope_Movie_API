@@ -8,11 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.apaul9.cinescope.CineScopeApp.Companion.DEFAULT_GOOGLE_SEARCH_URL
 import com.apaul9.cinescope.CineScopeApp.Companion.DEFAULT_IMDB_URL
+import com.apaul9.cinescope.MainActivity
 import com.apaul9.cinescope.R
 import com.apaul9.cinescope.databinding.FragmentWebviewBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 private const val TAG = "WebViewFragment"
 
@@ -54,11 +57,16 @@ class WebviewFragment : Fragment(R.layout.fragment_webview) {
                     }
                 }
             }
+
         }
 
         return binding.root
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

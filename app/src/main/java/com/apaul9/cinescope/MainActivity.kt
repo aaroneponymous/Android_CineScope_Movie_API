@@ -25,7 +25,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_mymovies,
                 R.id.navigation_dashboard,
                 R.id.navigation_webview,
+                R.id.navigation_settings,
                 R.id.navigation_info
+
             )
         )
 

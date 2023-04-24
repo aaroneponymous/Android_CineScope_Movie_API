@@ -1,6 +1,7 @@
 package com.apaul9.cinescope.ui.dashboard
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -18,6 +19,14 @@ private const val TAG = "DashboardViewModel"
 
 class DashboardViewModel(app: Application) : AndroidViewModel(app) {
 
+    private val sharedPreferences = app.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+    private val isSortVoteHL = sharedPreferences.getBoolean("sortVoteHL", false)
+    private val isSortVoteLH = sharedPreferences.getBoolean("sortVoteLH", false)
+    private val isLatest = sharedPreferences.getBoolean("latest", false)
+    private val isOldest = sharedPreferences.getBoolean("oldest", false)
+    private val isSafe = sharedPreferences.getBoolean("safe", false)
+
+
     companion object {
         private val tmdbAPI: TmdbAPI by lazy {
             val retrofit = Retrofit.Builder()
@@ -31,10 +40,10 @@ class DashboardViewModel(app: Application) : AndroidViewModel(app) {
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> = _movies
 
-    fun searchComplete(query: String, language: String) {
+    fun searchComplete(query: String) {
         _movies.value = emptyList()
         // Initial Search Call To Determine Total Pages
-        val movieRequest: Call<TmdbResponse> = tmdbAPI.searchMovies(BuildConfig.apikey,language, query)
+        val movieRequest: Call<TmdbResponse> = tmdbAPI.searchMovies(BuildConfig.apikey, query)
         movieRequest.enqueue(object : Callback<TmdbResponse> {
             override fun onFailure(call: Call<TmdbResponse>, t: Throwable) {
                 Log.d(TAG, "Failed to get response.")
@@ -46,15 +55,25 @@ class DashboardViewModel(app: Application) : AndroidViewModel(app) {
 
                 if (totalResults!!>=1) {
                     for (i in 1..totalPages!!) {
-                        searchMovies(query, language, i)
+                        searchMovies(query, language = "en-US", i)
+
+
                     }
                 }
+
+
             }
         })
     }
 
     fun searchMovies(query: String, language: String, page: Int) {
         val movieRequest: Call<TmdbResponse> = tmdbAPI.searchMovies(BuildConfig.apikey, query, language, page)
+        val sortByVoteHighToLow = isSortVoteHL
+        val sortByVoteLowToHigh = isSortVoteLH
+        val sortByReleaseDateNewestToOldest = isLatest
+        val sortByReleaseDateOldestToNewest = isOldest
+        val isSafeSearchOn = isSafe
+        val newList: MutableList<Movie> = mutableListOf()
         movieRequest.enqueue(object : Callback<TmdbResponse> {
 
             override fun onFailure(call: Call<TmdbResponse>, t: Throwable) {
@@ -62,14 +81,30 @@ class DashboardViewModel(app: Application) : AndroidViewModel(app) {
             }
 
             override fun onResponse(call: Call<TmdbResponse>, response: Response<TmdbResponse>) {
-                val newList: MutableList<Movie> = mutableListOf()
                 response.body()?.results?.forEach {
                     Log.d(TAG, "MOVIE: $it")
                     newList.add(it)
                 }
-                // Append new list to existing list
+
+
                 _movies.value = _movies.value?.plus(newList)
+
+                if (sortByVoteHighToLow) {
+                    _movies.value = _movies.value?.sortedByDescending { it.vote_average }
+                } else if (sortByVoteLowToHigh) {
+                    _movies.value = _movies.value?.sortedBy { it.vote_average }
+                }
+
+                if (sortByReleaseDateNewestToOldest) {
+                    _movies.value = _movies.value?.sortedByDescending { it.release_date }
+                } else if (sortByReleaseDateOldestToNewest) {
+                    _movies.value = _movies.value?.sortedBy { it.release_date }
+                }
+                if (isSafeSearchOn) {
+                    _movies.value = _movies.value?.filter { !it.adult }
+                }
             }
+
         })
     }
 }

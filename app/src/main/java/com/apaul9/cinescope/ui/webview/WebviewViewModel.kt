@@ -11,7 +11,7 @@ import com.apaul9.cinescope.CineScopeApp.Companion.DEFAULT_TMDB_SEARCH_URL
 
 private const val TAG = "WebviewViewModel"
 
-class WebviewViewModel(app: Application) : AndroidViewModel(app){
+class WebviewViewModel: ViewModel(){
 
 
     companion object {

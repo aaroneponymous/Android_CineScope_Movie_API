@@ -14,5 +14,18 @@
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="movie_search">Movie Search</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_information">App Information</string>
+    <string name="title_settings">Settings</string>
+    <string name="filter_voteHL">High to Low</string>
+    <string name="sort_VoteLH">Low to High</string>
+    <string name="sort_VoteClear">Clear Vote Filter</string>
+    <string name="filter_votes">Filter Search on Votes:</string>
+    <string name="filter_date">Filter By Date</string>
+    <string name="latest_to_old">Latest</string>
+    <string name="oldest">Oldest</string>
+    <string name="reset">Reset</string>
+    <string name="save">Save</string>
 
 </resources>

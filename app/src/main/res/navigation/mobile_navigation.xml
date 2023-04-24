@@ -13,10 +13,26 @@
         tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_navigation_dashboard_to_webviewFragment"
-            app:destination="@id/navigation_webview" />
+            app:destination="@id/navigation_webview"
+            app:popUpTo="@id/navigation_dashboard"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
         <action
             android:id="@+id/action_navigation_dashboard_to_myMoviesFragment"
-            app:destination="@id/navigation_mymovies" />
+            app:destination="@id/navigation_mymovies"
+            app:popUpTo="@id/navigation_dashboard"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_navigation_dashboard_to_infoFragment"
+            app:destination="@id/navigation_info"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_navigation_dashboard_to_settingsFragment2"
+            app:destination="@id/navigation_settings"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
     </fragment>
 
     <fragment
@@ -31,23 +47,38 @@
             android:defaultValue="@null" />
         <action
             android:id="@+id/action_navigation_webview_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
+            app:destination="@id/navigation_dashboard"
+            app:popUpTo="@id/navigation_dashboard"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
         <action
             android:id="@+id/action_navigation_webview_to_navigation_mymovies"
-            app:destination="@id/navigation_mymovies" />
+            app:destination="@id/navigation_mymovies"
+            app:popUpTo="@id/navigation_dashboard"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_navigation_webview_to_infoFragment"
+            app:destination="@id/navigation_info"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_navigation_webview_to_settingsFragment2"
+            app:destination="@id/navigation_settings"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
     </fragment>
+
     <fragment
         android:id="@+id/navigation_mymovies"
         android:name="com.apaul9.cinescope.ui.mymovies.MyMoviesFragment"
         android:label="@string/title_myMovies"
         tools:layout="@layout/fragment_my_movies" >
-        <argument android:name="movieID"
+        <argument
+            android:name="movieID"
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />
-        <action
-            android:id="@+id/action_myMoviesFragment_to_navigation_webview"
-            app:destination="@id/navigation_webview" />
         <argument
             android:name="movieTitle"
             app:argType="string"
@@ -80,7 +111,78 @@
             android:defaultValue="@null" />
         <action
             android:id="@+id/action_navigation_mymovies_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
+            app:destination="@id/navigation_dashboard"
+            app:popUpTo="@id/navigation_dashboard"
+            app:popUpToSaveState="true"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_navigation_mymovies_to_navigation_webview"
+            app:destination="@id/navigation_webview"
+            app:popUpTo="@id/navigation_dashboard"
+            app:popUpToSaveState="true"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_navigation_mymovies_to_infoFragment"
+            app:destination="@id/navigation_info"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_navigation_mymovies_to_settingsFragment2"
+            app:destination="@id/navigation_settings"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_info"
+        android:name="com.apaul9.cinescope.ui.info.InfoFragment"
+        android:label="@string/title_information"
+        tools:layout="@layout/fragment_info">
+        <action
+            android:id="@+id/action_infoFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_infoFragment_to_navigation_webview"
+            app:destination="@id/navigation_webview"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_infoFragment_to_navigation_mymovies"
+            app:destination="@id/navigation_mymovies"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_navigation_info_to_settingsFragment2"
+            app:destination="@id/navigation_settings"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.apaul9.cinescope.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_navigation_webview"
+            app:destination="@id/navigation_webview"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_settingsFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_settingsFragment_to_navigation_mymovies"
+            app:destination="@id/navigation_mymovies"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_settingsFragment_to_navigation_info"
+            app:destination="@id/navigation_info"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
     </fragment>
 
 </navigation>

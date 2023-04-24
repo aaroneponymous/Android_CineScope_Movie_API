@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Array of strings for the spinner -->
+<resources>
+    <string-array name="safe_result">
+        <item>Safe</item>
+        <item>Not Safe</item>
+    </string-array>
+</resources>

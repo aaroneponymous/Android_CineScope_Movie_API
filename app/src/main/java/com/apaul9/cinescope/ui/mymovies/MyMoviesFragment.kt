@@ -124,7 +124,7 @@ class MyMoviesFragment : Fragment(R.layout.fragment_my_movies) {
 
                     } else if (direction == ItemTouchHelper.RIGHT) {
                         val movieID = movieAdapter.getMovieAtPosition(viewHolder.adapterPosition).id.toString()
-                        val action = MyMoviesFragmentDirections.actionMyMoviesFragmentToNavigationWebview(movieID)
+                        val action = MyMoviesFragmentDirections.actionNavigationMymoviesToNavigationWebview(movieID)
                         view.findNavController().navigate(action)
                     }
                 }

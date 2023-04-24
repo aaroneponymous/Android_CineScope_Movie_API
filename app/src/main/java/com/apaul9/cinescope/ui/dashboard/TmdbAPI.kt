@@ -11,7 +11,7 @@ interface TmdbAPI {
     fun searchMovies(
         @Query("api_key") apiKey: String,
         @Query("query") query: String,
-        @Query("language") language: String,
+        @Query("language") language: String = "en-US",
         @Query("page") page: Int = 1
     ): Call<TmdbResponse>
 

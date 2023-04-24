@@ -9,4 +9,14 @@
     <string name="field_lookup_movie">Look Up Movie ...</string>
     <string name="language">Language:</string>
     <string name="title_myMovies">My Movies</string>
+    <string name="title_information">App Information</string>
+    <string name="filter_voteHL">High to Low</string>
+    <string name="sort_VoteLH">Low to High</string>
+    <string name="sort_VoteClear">Clear Vote Filter</string>
+    <string name="filter_votes">Filter Search on Votes:</string>
+    <string name="filter_date">Filter By Date</string>
+    <string name="latest_to_old">Latest</string>
+    <string name="oldest">Oldest</string>
+    <string name="reset">Reset</string>
+    <string name="save">Save</string>
 </resources>

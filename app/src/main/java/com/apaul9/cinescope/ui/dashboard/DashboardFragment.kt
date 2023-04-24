@@ -54,7 +54,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             searchButton.setOnClickListener {
                 val query = searchMovies.text.toString()
                 if (query.isNotEmpty()) {
-                    viewModel.searchComplete(query, "es-ES")
+                    viewModel.searchComplete(query)
                 }
             }
         }
@@ -88,7 +88,6 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                         binding.root.findNavController().navigate(action)
 
                     } else if (direction == ItemTouchHelper.RIGHT) {
-//                        viewHolder.itemView.rootView.setBackgroundColor(resources.getColor(R.color.teal_200))
 
                         val movieId = movieAdapter.movie[viewHolder.adapterPosition].id
                         val action = DashboardFragmentDirections.actionNavigationDashboardToWebviewFragment(movieId.toString())
@@ -124,7 +123,6 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             languageOriginal.text = movie.original_language
 
             if (movie.poster_path != null) {
-//                Log.d(TAG, "Movie Poster: ${movie.poster_path}")
                 var posterLink = CineScopeApp.DEFAULT_TMDB_IMAGE_URL + movie.poster_path
                 Picasso.get().load(posterLink).into(moviePoster)
             }
