@@ -28,7 +28,7 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
             appName.text = getString(R.string.app_name)
             appVersion.text = BuildConfig.VERSION_NAME
             buildType.text = BuildConfig.BUILD_TYPE
-            packageName.text = BuildConfig.apikey
+            apiKey.text = BuildConfig.apikey
 
 
         }

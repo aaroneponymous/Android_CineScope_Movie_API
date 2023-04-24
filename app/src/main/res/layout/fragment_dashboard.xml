@@ -5,49 +5,60 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".ui.dashboard.DashboardFragment"
+    android:background="@color/color_green_grey">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="390dp"
-        android:layout_height="610dp"
-        android:layout_marginTop="110dp"
+        android:layout_width="408dp"
+        android:layout_height="605dp"
+        android:layout_marginTop="120dp"
         android:nestedScrollingEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545"
         tools:listitem="@layout/recycler_card" />
 
-    <ImageButton
-        android:id="@+id/searchButton"
-        android:layout_width="45dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="4dp"
-        android:backgroundTint="#FFFFFF"
-        android:src="@drawable/ic_search"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardView"
+        android:layout_width="417dp"
+        android:layout_height="110dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.222"
-        app:layout_constraintStart_toEndOf="@+id/searchMovies"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029" />
-
-    <EditText
-        android:id="@+id/searchMovies"
-        android:layout_width="284dp"
-        android:layout_height="41dp"
-        android:background="@drawable/search_box"
-        android:hint="@string/field_lookup_movie"
-        android:paddingStart="12dp"
-        android:paddingRight="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/searchMovies"
+            android:layout_width="297dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/search_box"
+            android:hint="@string/field_lookup_movie"
+            android:paddingStart="12dp"
+            android:paddingRight="2dp"
+            android:textColor="@color/design_default_color_background"
+            android:textColorHint="@color/design_default_color_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="44dp"
+            android:layout_height="41dp"
+            android:backgroundTint="#00FFFFFF"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.384"
+            app:layout_constraintStart_toEndOf="@+id/searchMovies"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.507" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

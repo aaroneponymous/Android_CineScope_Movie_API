@@ -5,14 +5,16 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.info.InfoFragment" >
+    tools:context=".ui.info.InfoFragment"
+    android:background="@color/color_green_grey">
 
     <TextView
-        android:id="@+id/packageName"
+        android:id="@+id/apiKey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="TextView"
+        android:textColor="@color/design_default_color_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,12 +26,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:text="TextView"
+        android:textColor="@color/design_default_color_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appVersion"
-        app:layout_constraintVertical_bias="0.031" />
+        app:layout_constraintVertical_bias="0.017" />
 
     <TextView
         android:id="@+id/appVersion"
@@ -37,10 +40,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="TextView"
+        android:textColor="@color/design_default_color_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/packageName" />
+        app:layout_constraintTop_toBottomOf="@+id/apiKey" />
 
     <TextView
         android:id="@+id/appName"
@@ -48,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
         android:text="TextView"
+        android:textColor="@color/design_default_color_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

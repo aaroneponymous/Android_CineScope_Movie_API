@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Array of strings for the spinner -->
 <resources>
+    <!-- Set the Color of the Spinner -->
     <string-array name="safe_result">
         <item>Safe</item>
         <item>Not Safe</item>

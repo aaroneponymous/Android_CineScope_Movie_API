@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/color_lighter_grey"
+    app:cardBackgroundColor="@color/color_lighter_grey">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/recyclerItem"
@@ -12,7 +14,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:background="@color/color_lighter_grey">
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -36,6 +39,7 @@
                 android:scrollbars="vertical"
                 android:singleLine="false"
                 android:text="TextView"
+                android:textColor="@color/design_default_color_background"
                 android:textIsSelectable="true"
                 android:textSize="10sp" />
         </ScrollView>
@@ -47,10 +51,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintCircleRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.004"
+            app:layout_constraintHorizontal_bias="0.012"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             tools:srcCompat="@tools:sample/avatars[5]" />
 
         <TextView
@@ -58,6 +61,7 @@
             android:layout_width="180dp"
             android:layout_height="24dp"
             android:text="TextView"
+            android:textColor="@color/design_default_color_background"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.355"
@@ -69,6 +73,7 @@
             android:layout_width="180dp"
             android:layout_height="24dp"
             android:text="TextView"
+            android:textColor="@color/design_default_color_background"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.355"
@@ -80,6 +85,7 @@
             android:layout_width="180dp"
             android:layout_height="24dp"
             android:text="TextView"
+            android:textColor="@color/design_default_color_background"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.355"
@@ -91,6 +97,7 @@
             android:layout_width="73dp"
             android:layout_height="24dp"
             android:text="@string/language"
+            android:textColor="@color/design_default_color_background"
             android:textSize="10sp"
             app:layout_constraintBottom_toTopOf="@+id/scrollView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -104,6 +111,7 @@
             android:layout_width="107dp"
             android:layout_height="24dp"
             android:text="TextView"
+            android:textColor="@color/design_default_color_background"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

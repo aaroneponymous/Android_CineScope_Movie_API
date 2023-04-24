@@ -45,14 +45,17 @@ class WebviewFragment : Fragment(R.layout.fragment_webview) {
                 if (it != null) {
                     if (it.homepage != null && it.homepage != "") {
                         webView.loadUrl(it.homepage)
+                        webView.visibility = View.VISIBLE
                         Log.d(TAG, "OnCreateView: Homepage: ${it.homepage}")
                     }
                     else if (it.imdb_id != null && it.imdb_id != "") {
                         Log.d(TAG, "OnCreateView: IMDB ID: ${it.imdb_id}")
                         webView.loadUrl(DEFAULT_IMDB_URL + it.imdb_id)
+                        webView.visibility = View.VISIBLE
                     }
                     else {
                         webView.loadUrl(DEFAULT_GOOGLE_SEARCH_URL + it.original_title)
+                        webView.visibility = View.VISIBLE
                         Log.d(TAG, "OnCreateView: Google Search: ${DEFAULT_GOOGLE_SEARCH_URL + it.original_title}")
                     }
                 }
@@ -63,9 +66,10 @@ class WebviewFragment : Fragment(R.layout.fragment_webview) {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.mobile_navigation)
+        bottomNavigationView?.visibility = View.GONE
     }
 
     override fun onDestroyView() {
