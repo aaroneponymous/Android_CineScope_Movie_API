@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cine Scope</string>
+    <string name="title_my_movies">Mis películas</string>
+    <string name="title_dashboard">Tablero</string>
+    <string name="title_webview">Navegador web</string>
+    <string name="title_info">Información</string>
+    <string name="no_connection">¡Sin conexión a Internet!</string>
+    <string name="field_lookup_movie">Buscar película ...</string>
+    <string name="no_movies_found">¡No se encontraron películas!
+                               Intenta buscar de nuevo.</string>
+    <string name="language">Idioma:</string>
+    <string name="title_myMovies">Mis películas</string>
+    <string name="delete_Alert">¿Desea eliminar </string>
+    <string name="delete">Eliminar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="movie_search">Búsqueda de películas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hola fragmento en blanco</string>
+    <string name="title_information">Información de la app</string>
+    <string name="title_settings">Configuración</string>
+    <string name="filter_voteHL">De mayor a menor</string>
+    <string name="sort_VoteLH">De menor a mayor</string>
+    <string name="sort_VoteClear">Limpiar filtro de votos</string>
+    <string name="filter_votes">Filtrar búsqueda por votos:</string>
+    <string name="filter_date">Filtrar por fecha</string>
+    <string name="latest_to_old">Más recientes</string>
+    <string name="oldest">Más antiguos</string>
+    <string name="reset">Restablecer</string>
+    <string name="save">Guardar</string>
+
+</resources>

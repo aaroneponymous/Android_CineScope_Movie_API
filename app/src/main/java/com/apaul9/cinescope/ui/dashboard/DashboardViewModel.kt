@@ -14,6 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 private const val TAG = "DashboardViewModel"
 
@@ -41,6 +42,13 @@ class DashboardViewModel(app: Application) : AndroidViewModel(app) {
     val movies: LiveData<List<Movie>> = _movies
 
     fun searchComplete(query: String) {
+        Log.d(TAG, "isSortVoteHL: $isSortVoteHL")
+        Log.d(TAG, "isSortVoteLH: $isSortVoteLH")
+        Log.d(TAG, "isLatest: $isLatest")
+        Log.d(TAG, "isOldest: $isOldest")
+        Log.d(TAG, "isSafe: $isSafe")
+
+
         _movies.value = emptyList()
         // Initial Search Call To Determine Total Pages
         val movieRequest: Call<TmdbResponse> = tmdbAPI.searchMovies(BuildConfig.apikey, query)
@@ -55,7 +63,7 @@ class DashboardViewModel(app: Application) : AndroidViewModel(app) {
 
                 if (totalResults!!>=1) {
                     for (i in 1..totalPages!!) {
-                        searchMovies(query, language = "en-US", i)
+                        searchMovies(query, Locale.getDefault().language, i)
 
 
                     }
@@ -82,7 +90,7 @@ class DashboardViewModel(app: Application) : AndroidViewModel(app) {
 
             override fun onResponse(call: Call<TmdbResponse>, response: Response<TmdbResponse>) {
                 response.body()?.results?.forEach {
-                    Log.d(TAG, "MOVIE: $it")
+                    Log.d(TAG, "DASHBOARD VIEWMODEL: MOVIE: $it")
                     newList.add(it)
                 }
 

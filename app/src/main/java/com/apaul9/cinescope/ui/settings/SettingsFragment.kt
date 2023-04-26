@@ -80,9 +80,21 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 oldest.isChecked = false
                 safeResultSpinner.setSelection(0)
 
+                // Set the shared preferences to false
+
                 val editor = sharedPrefs.edit()
-                editor.clear()
+                editor.putBoolean("sortVoteHL", false)
+                editor.putBoolean("sortVoteLH", false)
+                editor.putBoolean("latest", false)
+                editor.putBoolean("oldest", false)
+                editor.putBoolean("safe", false)
+                editor.putBoolean("notSafe", false)
                 editor.apply()
+
+                // Navigate back to Dashboard
+                val action = SettingsFragmentDirections.actionSettingsFragmentToNavigationDashboard()
+                view?.findNavController()?.navigate(action)
+
             })
         }
 

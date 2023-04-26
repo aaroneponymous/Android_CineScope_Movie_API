@@ -51,6 +51,17 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                     }
                 }
             }
+
+            searchMovies.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+                if (event != null && event.action == MotionEvent.ACTION_DOWN) {
+                    val query = searchMovies.text.toString()
+                    if (query.isNotEmpty()) {
+                        viewModel.searchComplete(query)
+                    }
+                }
+                false
+            })
+
             searchButton.setOnClickListener {
                 val query = searchMovies.text.toString()
                 if (query.isNotEmpty()) {
